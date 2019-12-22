@@ -27,8 +27,20 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  const number = num;
+  let taskResult;
+
+  if (number % 3 === 0 && number % 5 === 0) {
+    taskResult = 'FizzBuzz';
+  } else if (number % 3 === 0) {
+    taskResult = 'Fizz';
+  } else if (number % 5 === 0) {
+    taskResult = 'Buzz';
+  } else {
+    taskResult = number;
+  }
+  return taskResult;
 }
 
 
@@ -43,8 +55,14 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  function factorialize(num) {
+    if (num < 0) return -1;
+    if (num === 0) return 1;
+
+    return (num * factorialize(num - 1));
+  }
+  return factorialize(n);
 }
 
 
@@ -60,8 +78,10 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  const v1 = (n2 - n1) + 1;
+  const v2 = (n1 + n2);
+  return (v1 * v2) / 2;
 }
 
 
@@ -80,8 +100,9 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if ((a + b > c) && (b + c > a) && (c + a > b)) { return true; }
+  return false;
 }
 
 
@@ -148,8 +169,14 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  function pointInCircle(x, y, cx, cy, radius) {
+    const distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+
+    return (distancesquared < (radius * radius));
+  }
+
+  return (pointInCircle(point.x, point.y, circle.center.x, circle.center.y, circle.radius));
 }
 
 
@@ -164,8 +191,8 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  return str.split('').filter((character, index, obj) => obj.indexOf(character) === obj.lastIndexOf(character)).shift();
 }
 
 
@@ -208,8 +235,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -225,8 +252,16 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return (
+    parseFloat(
+      num
+        .toString()
+        .split('')
+        .reverse()
+        .join(''),
+    ) * Math.sign(num)
+  );
 }
 
 
@@ -268,8 +303,8 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  return num < 1 ? 0 : (((num - 1) % 9) + 1);
 }
 
 
