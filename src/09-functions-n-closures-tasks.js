@@ -23,8 +23,11 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  function compose(f1, g1) {
+    return function comp(x) { return f1(g1(x)); };
+  }
+  return compose(f, g);
 }
 
 
